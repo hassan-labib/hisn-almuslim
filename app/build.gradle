@@ -1,0 +1,26 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.hassan.hisn'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.hassan.hisn'
+        minSdk 24
+        targetSdk 34
+        versionCode 6
+        versionName '3.5'
+        ndk { abiFilters 'arm64-v8a', 'armeabi-v7a' }
+    }
+    signingConfigs { release {
+        // Signing data comes only from the environment. Without it (F-Droid, public builds) the APK is left unsigned.
+        if (System.getenv('KS_FILE') != null) {
+            storeFile file(System.getenv('KS_FILE'))
+            storePassword System.getenv('KS_PASS'); keyAlias 'hisn'; keyPassword System.getenv('KS_PASS')
+        }
+    } }
+    buildTypes { release { if (System.getenv('KS_FILE') != null) signingConfig signingConfigs.release; minifyEnabled false } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    androidResources { noCompress 'json', 'tflite', 'ogg' }
+    lint { abortOnError false; checkReleaseBuilds false }
+    packaging { jniLibs { useLegacyPackaging = false } }
+}
+dependencies { implementation 'org.tensorflow:tensorflow-lite:2.14.0' }

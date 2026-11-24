@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" xmlns:tools="http://schemas.android.com/tools"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <queries>
+        <intent><action android:name="android.media.action.IMAGE_CAPTURE"/></intent>
+        <intent><action android:name="android.intent.action.DIAL"/></intent>
+    </queries>
+    <application
+        android:allowBackup="false"
+        android:largeHeap="true"
+        android:icon="@drawable/ic_launcher"
+        android:name=".App"
+        android:label="حصن المسلم"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ReaderActivity"/>
+        <activity android:name=".ChapterActivity"/>
+        <activity android:name=".TasbihActivity"/>
+        <activity android:name=".QiblaActivity"/>
+        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".AboutActivity"/>
+        <activity android:name=".TafsirActivity"/>
+        <activity android:name=".HadithActivity"/>
+        <activity android:name=".LockActivity" android:exported="false" android:excludeFromRecents="true"
+            android:launchMode="singleTask" android:showWhenLocked="true" android:taskAffinity="com.hassan.hisn.lock" android:turnScreenOn="true"/>
+        <service android:name=".LockService" android:exported="false" android:foregroundServiceType="specialUse">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="prayer_lock"/>
+        </service>
+        <service android:name=".AdhanService" android:exported="false" android:foregroundServiceType="mediaPlayback"/>
+        <provider android:name=".PhotoProvider" android:authorities="com.hassan.hisn.photo" android:exported="false" android:grantUriPermissions="true"/>
+        <receiver android:name=".AlarmReceiver" android:exported="false"/>
+        <receiver android:name=".BootReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

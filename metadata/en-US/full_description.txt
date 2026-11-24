@@ -1,0 +1,3 @@
+Hisn al-Muslim is a free app made as sadaqah jariyah. No ads, no accounts, no tracking.
+
+Madinah Mushaf pages with tafsir (Muyassar, As-Sa'di, Ibn Kathir), ten hadith collections with the grades given by the source, adhan and iqama, morning, evening and sleep adhkar one dhikr per screen with a tap counter, bookmarks, an optional hourly dhikr card, an optional prayer lock, Qibla and a tasbih counter. Arabic by default, with an English interface option.
